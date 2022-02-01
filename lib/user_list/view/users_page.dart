@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_list/user_list/widgets/users_list.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class UsersPage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Here we have to implement our List'),
+        child: UsersListWidget(),
       ),
     );
   }

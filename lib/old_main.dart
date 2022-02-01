@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/user.dart';
-import 'package:user_list/users_list.dart';
+import 'package:user_list/user_list/models/user.dart';
+import 'package:user_list/user_list/models/users_list.dart';
 import 'dart:async';
 import 'dart:convert';
 
