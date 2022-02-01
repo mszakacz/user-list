@@ -7,7 +7,7 @@ class EditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User List'),
+        title: const Text('User Page'),
       ),
       body: Center(
         child: Text('Here we have to implement Editing of the User Parameters'),

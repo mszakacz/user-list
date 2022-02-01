@@ -10,6 +10,10 @@ class AppRouter {
         );
       case '/settings':
         return MaterialPageRoute(
+          builder: (_) => const SettingsPage(),
+        );
+      case '/add':
+        return MaterialPageRoute(
           builder: (_) => const EditPage(),
         );
       default:
