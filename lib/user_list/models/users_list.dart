@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:user_list/user.dart';
+import 'package:user_list/user_list/models/user.dart';
 import 'package:path_provider/path_provider.dart';
 
 class UsersList {
