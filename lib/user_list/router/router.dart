@@ -16,6 +16,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const EditPage(),
         );
+      case '/edit':
+        return MaterialPageRoute(
+          builder: (_) => const EditPage(),
+        );
       default:
         return null;
     }

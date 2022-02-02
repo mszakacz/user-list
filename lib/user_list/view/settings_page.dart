@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/user_list/cubit/users_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -10,7 +9,7 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Here we have to implement Settings'),
       ),
     );

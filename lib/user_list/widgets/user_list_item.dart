@@ -13,6 +13,7 @@ class UserListItem extends StatelessWidget {
       child: ListTile(
         leading: Text('${user.id}', style: TextTheme.caption),
         title: Text('${user.firstname} ${user.lastname}'),
+        onTap: () => Navigator.of(context).pushNamed('/edit'),
       ),
     );
   }

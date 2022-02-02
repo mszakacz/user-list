@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/user_list/widgets/users_list.dart';
-import 'package:user_list/user_list/cubit/users_cubit.dart';
+import 'package:user_list/user_list/bloc/users_bloc.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class UsersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User List'),
+        title: const Text('Users List'),
         centerTitle: false,
         backgroundColor: Colors.grey[800],
         actions: <Widget>[
@@ -39,36 +39,34 @@ class UsersPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              BlocProvider.of<UsersCubit>(context).refreshList();
+              context.read<UsersBloc>().add(UpdateUsersList());
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  duration: Duration(seconds: 1),
-                  content: BlocBuilder<UsersCubit, UsersState>(
-                    builder: (context, state) {
-                      print(state.lastAvailableList[0].firstname);
-                      if (state.isUpToDate) {
-                        return Text(
-                          'Users List is up to date.',
-                        );
-                      } else {
-                        return Text(
-                          'Communication with the server failed. Try one more time after few minutes.',
-                        );
-                      }
-                    },
-                  ),
-                ),
-              );
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   SnackBar(
+              //     duration: Duration(seconds: 1),
+              //     content: BlocBuilder<UsersBloc, UsersState>(
+              //       builder: (context, state) {
+              //         if (state.isUpToDate) {
+              //           return Text(
+              //             'Users List is up to date.',
+              //           );
+              //         } else {
+              //           return Text(
+              //             'Communication with the server failed. Try one more time after few minutes.',
+              //           );
+              //         }
+              //       },
+              //     ),
+              //   ),
+              // );
             },
           )
         ],
       ),
-      body: BlocBuilder<UsersCubit, UsersState>(
+      body: BlocBuilder<UsersBloc, UsersState>(
         builder: (context, state) {
-          return Center(
+          return const Center(
             child: UsersListWidget(),
-            // child: Text(state.lastAvailableList[0].firstname),
           );
         },
       ),
