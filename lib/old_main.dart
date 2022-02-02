@@ -7,7 +7,7 @@ import 'dart:convert';
 void main() async {
   final _userService = UserService();
   // final user = await _userService.getUser(45);
-  final _usersList = UsersList();
+  final _usersList = UsersListService();
   // _userService.updateUser(44, 'Max', 'Test');
   // User user = User(
   //   id: 99,
@@ -25,9 +25,9 @@ void main() async {
 
   // _userService.postUser(user);
 
-  final user = await _userService.getUser(131);
-  user.status = "locked";
-  _userService.updateUser(131, user);
+  // final user = await _userService.getUser(131);
+  // user.status = "locked";
+  // _userService.updateUser(131, user);
 
   // final user = list[1];
 

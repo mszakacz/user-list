@@ -16,6 +16,7 @@ class _UsersListWidgetState extends State<UsersListWidget> {
     return BlocBuilder<UsersCubit, UsersState>(
       builder: (context, state) {
         if (state is WaitingForDataState) {
+          print('Waiting for data State');
           return const Center(child: CircularProgressIndicator());
         } else {
           return ListView.builder(
