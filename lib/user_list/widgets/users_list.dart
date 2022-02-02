@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user_list/user_list/cubit/users_cubit.dart';
+import 'package:user_list/user_list/bloc/users_bloc.dart';
 import 'package:user_list/user_list/widgets/user_list_item.dart';
 
 class UsersListWidget extends StatefulWidget {
@@ -13,18 +13,27 @@ class UsersListWidget extends StatefulWidget {
 class _UsersListWidgetState extends State<UsersListWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UsersCubit, UsersState>(
+    return BlocBuilder<UsersBloc, UsersState>(
       builder: (context, state) {
-        if (state is WaitingForDataState) {
-          print('Waiting for data State');
-          return const Center(child: CircularProgressIndicator());
-        } else {
-          return ListView.builder(
-            itemBuilder: (BuildContext context, int index) {
-              return UserListItem(user: state.lastAvailableList[index]);
-            },
-            itemCount: state.lastAvailableList.length,
-          );
+        switch (state.status) {
+          case UsersStatus.failure:
+            return const Center(child: Text('Failed to get the Users'));
+          case UsersStatus.success:
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return UserListItem(user: state.users[index]);
+              },
+              itemCount: state.users.length,
+            );
+          default:
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 50),
+                Text('Retrieving the Users...'),
+              ],
+            );
         }
       },
     );
