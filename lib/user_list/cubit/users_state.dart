@@ -48,14 +48,30 @@ const List<User> list = [
   )
 ];
 
-class UsersState {
-  List<User> lastAvailableList;
-  bool isUpToDate;
+class UsersState extends Equatable {
+  final List<User> lastAvailableList;
+  final bool isUpToDate;
 
-  UsersState({
+  const UsersState({
     required this.lastAvailableList,
     required this.isUpToDate,
   });
+
+  @override
+  List<Object> get props => [
+        lastAvailableList,
+        isUpToDate,
+      ];
+
+  UsersState copyWith({
+    List<User>? lastAvailableList,
+    bool? isUpToDate,
+  }) {
+    return UsersState(
+      lastAvailableList: lastAvailableList ?? this.lastAvailableList,
+      isUpToDate: isUpToDate ?? this.isUpToDate,
+    );
+  }
 }
 
 class UsersInitialState {
