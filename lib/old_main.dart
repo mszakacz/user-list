@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/user_list/models/user.dart';
-import 'package:user_list/user_list/models/users_list.dart';
+import 'package:user_repository/user_repository.dart';
+
 import 'dart:async';
 import 'dart:convert';
 
 void main() async {
-  final _userService = UserService();
+  final _userRepository = UserRepository();
   // final user = await _userService.getUser(45);
-  final _usersList = UsersListService();
+  final _usersListRepository = UsersListRepository();
   // _userService.updateUser(44, 'Max', 'Test');
   // User user = User(
   //   id: 99,

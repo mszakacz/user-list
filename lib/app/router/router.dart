@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/edit_user/bloc/user_bloc.dart';
 import 'package:user_list/user_list/view/view.dart';
 import 'package:user_list/edit_user/view/view.dart';
 import 'package:user_list/view_user/view/view.dart';
-import 'package:user_list/user_list/models/models.dart';
+import 'package:user_repository/user_repository.dart';
 
 class AppRouter {
   Route? onGenerateRout(RouteSettings settings) {
