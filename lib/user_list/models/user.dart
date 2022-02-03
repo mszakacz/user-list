@@ -55,6 +55,19 @@ class UserService {
       body: jsonEncode(user),
     );
   }
+
+  User emptyUser() {
+    User user = const User(
+      id: 0,
+      lastname: '',
+      firstname: '',
+      status: '',
+      createdAt: '',
+      updatedAt: '',
+      url: '',
+    );
+    return user;
+  }
 }
 
 class User {
