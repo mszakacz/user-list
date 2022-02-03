@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/user_list/router/router.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
+import 'package:user_list/edit_user/bloc/user_bloc.dart';
 
 class App extends StatefulWidget {
   @override
@@ -13,8 +14,15 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UsersBloc>(
-      create: (context) => UsersBloc()..add(UpdateUsersList()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<UsersBloc>(
+          create: (context) => UsersBloc()..add(UpdateUsersList()),
+        ),
+        BlocProvider<UserBloc>(
+          create: (context) => UserBloc(),
+        ),
+      ],
       child: MaterialApp(
         title: 'User List',
         theme: ThemeData(
