@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/user_list/models/models.dart';
+import 'package:user_repository/user_repository.dart';
 
 class UserListItem extends StatelessWidget {
   const UserListItem({Key? key, required this.user}) : super(key: key);

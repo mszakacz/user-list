@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/user_list/models/models.dart';
+import 'package:user_repository/user_repository.dart';
 import 'package:user_list/view_user/widgets/widgets.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
