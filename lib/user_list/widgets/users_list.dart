@@ -28,7 +28,7 @@ class _UsersListWidgetState extends State<UsersListWidget> {
           default:
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 CircularProgressIndicator(),
                 SizedBox(height: 50),
                 Text('Retrieving the Users...'),

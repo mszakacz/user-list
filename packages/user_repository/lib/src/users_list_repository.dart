@@ -12,9 +12,7 @@ class UsersListRepository {
         Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
     final response = await http.get(uri);
     final jsonList = jsonDecode(response.body);
-    print(jsonList[0]);
 
-    final _userService = UserRepository();
     List<User> usersList = [];
     for (var jsonUser in jsonList) {
       final user = await User.fromJson(jsonUser);

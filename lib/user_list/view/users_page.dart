@@ -30,7 +30,7 @@ class UsersPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed('/add');
+              Navigator.of(context).pushNamed('/new');
             },
           ),
           IconButton(
@@ -40,25 +40,6 @@ class UsersPage extends StatelessWidget {
             ),
             onPressed: () {
               context.read<UsersBloc>().add(UpdateUsersList());
-
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     duration: Duration(seconds: 1),
-              //     content: BlocBuilder<UsersBloc, UsersState>(
-              //       builder: (context, state) {
-              //         if (state.isUpToDate) {
-              //           return Text(
-              //             'Users List is up to date.',
-              //           );
-              //         } else {
-              //           return Text(
-              //             'Communication with the server failed. Try one more time after few minutes.',
-              //           );
-              //         }
-              //       },
-              //     ),
-              //   ),
-              // );
             },
           )
         ],

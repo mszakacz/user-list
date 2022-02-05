@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:user_list/view_user/widgets/widgets.dart';
-import 'package:intl/intl.dart';
-import 'dart:convert';
 
 class ViewUserPage extends StatelessWidget {
   final User user;
@@ -19,7 +17,7 @@ class ViewUserPage extends StatelessWidget {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 UserPropertyNameWidget(text: 'id:'),
                 UserPropertyNameWidget(text: 'Name:'),
                 UserPropertyNameWidget(text: 'Lastname:'),

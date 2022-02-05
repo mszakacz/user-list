@@ -8,11 +8,16 @@ class UserListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme = Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
     return Material(
       child: ListTile(
-        leading: Text('${user.id}', style: TextTheme.caption),
-        title: Text('${user.firstname} ${user.lastname}'),
+        leading: Text('${user.id}', style: textTheme.caption),
+        title: Text(
+          '${user.firstname} ${user.lastname}',
+          style: TextStyle(
+            color: (user.status == 'active') ? Colors.black : Colors.grey[400],
+          ),
+        ),
         onTap: () => Navigator.of(context).pushNamed('/view', arguments: user),
       ),
     );
