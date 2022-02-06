@@ -32,7 +32,8 @@ class UserRepository {
     );
   }
 
-  void updateUser(int id, User user) async {
+  Future<void> updateUser(User user) async {
+    int id = user.id;
     final uri = Uri.https(
       'assessment-users-backend.herokuapp.com',
       '/users/${id.toString()}.json',

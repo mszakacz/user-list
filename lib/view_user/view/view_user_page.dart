@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:user_list/view_user/widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_list/view_user/bloc/view_user_bloc.dart';
 
 class ViewUserPage extends StatelessWidget {
   final User user;
@@ -8,40 +10,16 @@ class ViewUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+      create: (context) => ViewUserBloc()..add(GetUserFromMemory(user)),
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('User Page'),
         ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                UserPropertyNameWidget(text: 'id:'),
-                UserPropertyNameWidget(text: 'Name:'),
-                UserPropertyNameWidget(text: 'Lastname:'),
-                UserPropertyNameWidget(text: 'Status:'),
-                UserPropertyNameWidget(text: 'Created at:'),
-                UserPropertyNameWidget(text: 'Updated at:'),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                UserPropertyValueWidget(text: user.id.toString()),
-                UserPropertyValueWidget(text: user.firstname),
-                UserPropertyValueWidget(text: user.lastname),
-                UserPropertyValueWidget(text: user.status),
-                UserPropertyValueWidget(text: dateString(user.createdAt)),
-                UserPropertyValueWidget(text: dateString(user.updatedAt)),
-              ],
-            ),
-          ],
-        ));
-  }
-
-  String dateString(String date) {
-    return date.substring(0, 10) + '  ' + date.substring(11, 16);
+        body: const Center(
+          child: ViewUserWidget(),
+        ),
+      ),
+    );
   }
 }
