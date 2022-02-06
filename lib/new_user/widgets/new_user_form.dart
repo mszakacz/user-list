@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:user_list/new_user/cubit/new_user_cubit.dart';
 import 'package:user_repository/user_repository.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewUserForm extends StatefulWidget {
   const NewUserForm({Key? key}) : super(key: key);
@@ -47,7 +50,10 @@ class _NewUserFormState extends State<NewUserForm> {
           ),
         ),
         ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => {
+            BlocProvider.of<NewUserCubit>(context)
+                .createNewUser(_name, _lastname)
+          },
           child: const Text('Create'),
         ),
       ],

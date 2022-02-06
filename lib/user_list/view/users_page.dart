@@ -21,7 +21,8 @@ class UsersPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed('/settings');
+              Navigator.of(context).pushNamed('/settings').whenComplete(
+                  () => context.read<UsersBloc>().add(UpdateUsersList()));
             },
           ),
           IconButton(
@@ -30,7 +31,8 @@ class UsersPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.of(context).pushNamed('/new');
+              Navigator.of(context).pushNamed('/new').whenComplete(
+                  () => context.read<UsersBloc>().add(UpdateUsersList()));
             },
           ),
           IconButton(
