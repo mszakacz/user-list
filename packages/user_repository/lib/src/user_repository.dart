@@ -19,7 +19,7 @@ class UserRepository {
     await http.delete(uri);
   }
 
-  void postUser(User user) async {
+  Future<void> postUser(User user) async {
     int id = user.id;
     final uri =
         Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
@@ -59,5 +59,16 @@ class UserRepository {
     return user;
   }
 
-  void createNewUser(String name, String lastname) {}
+  Future<void> createAndPostNewUser(String name, String lastname) {
+    User user = User(
+      id: 0, // server automatically sets it
+      lastname: lastname,
+      firstname: name,
+      status: 'active',
+      createdAt: '', // server automatically sets it
+      updatedAt: '', // server automatically sets it
+      url: '', // server automatically sets it
+    );
+    return postUser(user);
+  }
 }
