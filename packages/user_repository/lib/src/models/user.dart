@@ -9,14 +9,34 @@ class User {
   final String createdAt;
 
   const User({
-    required this.id,
-    required this.lastname,
-    required this.firstname,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.url,
+    this.id = 0,
+    this.lastname = '',
+    this.firstname = '',
+    this.status = 'active',
+    this.createdAt = '',
+    this.updatedAt = '',
+    this.url = '',
   });
+
+  User copyWith({
+    int? id,
+    String? lastname,
+    String? firstname,
+    String? status,
+    String? updatedAt,
+    String? url,
+    String? createdAt,
+  }) {
+    return User(
+      id: id ?? this.id,
+      lastname: lastname ?? this.lastname,
+      firstname: firstname ?? this.firstname,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      url: url ?? this.url,
+    );
+  }
 
   factory User.fromJson(Map<String, dynamic> data) {
     int id = data['id'];
