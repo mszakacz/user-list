@@ -14,13 +14,13 @@ class UserActivationButton extends StatelessWidget {
         if (state.status == UserActivationStatus.locked) {
           return ElevatedButton(
             onPressed: () => context.read<ViewUserBloc>().add(ActivateUser()),
-            child: Text('Activate User'),
+            child: const Text('Activate User'),
             style: ElevatedButton.styleFrom(primary: Colors.green),
           );
         } else {
           return ElevatedButton(
             onPressed: () => context.read<ViewUserBloc>().add(LockUser()),
-            child: Text('  Lock User  '),
+            child: const Text('  Lock User  '),
             style: ElevatedButton.styleFrom(primary: Colors.grey[400]),
           );
         }

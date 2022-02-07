@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/user_list/widgets/users_list.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';

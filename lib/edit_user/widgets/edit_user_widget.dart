@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:user_list/edit_user/bloc/edit_user_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/edit_user/widgets/widgets.dart';
-import 'package:user_list/app/app.dart';
 
 class EditUserWidget extends StatelessWidget {
   const EditUserWidget({Key? key}) : super(key: key);
@@ -19,14 +18,14 @@ class EditUserWidget extends StatelessWidget {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                UserPropertiesForm(),
+                const UserPropertiesForm(),
                 ElevatedButton(
                   onPressed: () async {
                     context.read<EditUserBloc>().add(SaveUser());
                     await Future.delayed(const Duration(seconds: 2));
                     Navigator.pop(context);
                   },
-                  child: Text('Save Changes'),
+                  child: const Text('Save Changes'),
                 ),
               ],
             );

@@ -46,7 +46,7 @@ class User {
     String createdAt = data['created_at'];
     String updatedAt = data['updated_at'];
 
-    User user = User(
+    final User user = User(
       id: id,
       lastname: lastname,
       firstname: firstname,
