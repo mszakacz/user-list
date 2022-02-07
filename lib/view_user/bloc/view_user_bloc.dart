@@ -12,7 +12,7 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
       : super(const UserState(status: UserActivationStatus.loading)) {
     on<ActivateUser>(_onActivateUser);
     on<LockUser>(_onLockUser);
-    // on<GetUserFromDB>(_onGetUserFromDB);
+    on<GetUserFromDB>(_onGetUserFromDB);
     on<GetUserFromMemory>(_onGetUserFromMemory);
   }
 
@@ -32,14 +32,23 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
     }
   }
 
-  // Future<void> _onGetUserFromDB(GetUserFromDB event, Emitter<UserState> emit) async {
-  //   emit(state.copyWith(status: UserActivationStatus.loading));
-  //   try {
-  //     final UserRepository _userRepository = UserRepository();
-  //     final user = state.user;
-  //     user.status =
-  //   }
-  // }
+  Future<void> _onGetUserFromDB(
+      GetUserFromDB event, Emitter<UserState> emit) async {
+    emit(state.copyWith(status: UserActivationStatus.loading));
+    try {
+      final UserRepository _userRepository = UserRepository();
+      final user = await _userRepository.getUser(state.user.id);
+      UserActivationStatus status;
+      if (user.status == 'active') {
+        status = UserActivationStatus.active;
+      } else {
+        status = UserActivationStatus.locked;
+      }
+      emit(state.copyWith(user: user, status: status));
+    } catch (_) {
+      emit(state.copyWith(status: UserActivationStatus.failure));
+    }
+  }
 
   Future<void> _onActivateUser(
       ActivateUser event, Emitter<UserState> emit) async {

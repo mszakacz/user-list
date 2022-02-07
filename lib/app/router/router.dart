@@ -18,11 +18,14 @@ class AppRouter {
         );
       case '/new':
         return MaterialPageRoute(
-          builder: (_) => NewUserPage(),
+          builder: (_) => const NewUserPage(),
         );
       case '/edit':
         return MaterialPageRoute(
-          builder: (_) => const EditPage(),
+          builder: (_) {
+            final int id = settings.arguments as int;
+            return EditPage(id: id);
+          },
         );
       case '/view':
         return MaterialPageRoute(
