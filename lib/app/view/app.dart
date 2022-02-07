@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/app/app.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
-import 'package:user_list/edit_user/bloc/user_bloc.dart';
+import 'package:user_list/edit_user/bloc/edit_user_bloc.dart';
 import 'package:user_list/new_user/cubit/new_user_cubit.dart';
 
 class App extends StatefulWidget {
@@ -19,9 +19,6 @@ class _AppState extends State<App> {
       providers: [
         BlocProvider<UsersBloc>(
           create: (context) => UsersBloc()..add(UpdateUsersList()),
-        ),
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(),
         ),
       ],
       child: MaterialApp(

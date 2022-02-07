@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:user_list/edit_user/bloc/edit_user_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_list/edit_user/widgets/edit_user_widget.dart';
 
 class EditPage extends StatelessWidget {
-  const EditPage({Key? key}) : super(key: key);
+  final int id;
+  const EditPage({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('User Page'),
-      ),
-      body: Center(
-        child: Text('Here we have to implement Editing of the User Parameters'),
+    return BlocProvider(
+      create: (context) => EditUserBloc()..add(SetUserByID(id)),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Edit User'),
+        ),
+        body: const Center(
+          child: EditUserWidget(),
+        ),
       ),
     );
   }
