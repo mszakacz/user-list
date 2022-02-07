@@ -1,16 +1,11 @@
 # user_list
 
-A new Flutter project.
+Flutter mobile App which present and edit User-List connected with database.
 
-## Getting Started
+functionalities:
+- get users list from data base and present it
+- sort list of users by creation time, update time, id, name, lastname
+- create a new user
+- edit the user
+- lock/activate the user (locked users have different view)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

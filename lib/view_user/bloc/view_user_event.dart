@@ -20,3 +20,5 @@ class GetUserFromMemory extends ViewUserEvent {
   @override
   List<Object> get props => [user];
 }
+
+class DeleteUser extends ViewUserEvent {}

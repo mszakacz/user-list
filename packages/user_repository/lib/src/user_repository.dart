@@ -13,7 +13,7 @@ class UserRepository {
     return User.fromJson(data);
   }
 
-  void deleteUser(int id) async {
+  Future<void> deleteUser(int id) async {
     final uri = Uri.https('assessment-users-backend.herokuapp.com',
         '/users/${id.toString()}.json');
     await http.delete(uri);
@@ -44,19 +44,6 @@ class UserRepository {
       },
       body: jsonEncode(user),
     );
-  }
-
-  User emptyUser() {
-    User user = const User(
-      id: 0,
-      lastname: '',
-      firstname: '',
-      status: '',
-      createdAt: '',
-      updatedAt: '',
-      url: '',
-    );
-    return user;
   }
 
   Future<void> createAndPostNewUser(String name, String lastname) {
