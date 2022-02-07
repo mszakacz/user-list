@@ -56,8 +56,6 @@ class UsersListRepository {
         usersList.sort((a, b) =>
             a.lastname.toLowerCase().compareTo(b.lastname.toLowerCase()));
         return usersList;
-      default:
-        return usersList;
     }
   }
 }
