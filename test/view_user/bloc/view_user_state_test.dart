@@ -1,18 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:user_list/user_list/bloc/users_bloc.dart';
+import 'package:user_list/view_user/bloc/view_user_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
 void main() {
-  group('UsersState', () {
-    UsersState createSubject({
-      UsersStatus status = UsersStatus.loading,
-      List<User> users = const <User>[],
-      SortingBy sortingBy = SortingBy.creationTimeDescending,
+  group('UserState', () {
+    UserState createSubject({
+      UserActivationStatus status = UserActivationStatus.loading,
+      User user = const User(),
     }) {
-      return UsersState(
-        users: users,
+      return UserState(
         status: status,
-        sortingBy: sortingBy,
+        user: user,
       );
     }
 
@@ -26,14 +24,12 @@ void main() {
     test('props are correct', () {
       expect(
         createSubject(
-          status: UsersStatus.loading,
-          users: const <User>[],
-          sortingBy: SortingBy.creationTimeDescending,
+          status: UserActivationStatus.loading,
+          user: const User(),
         ).props,
         equals(<Object?>[
-          const <User>[],
-          UsersStatus.loading,
-          SortingBy.creationTimeDescending,
+          UserActivationStatus.loading,
+          const User(),
         ]),
       );
     });
@@ -49,9 +45,8 @@ void main() {
       test('retains the old value for every parameter if null is provided', () {
         expect(
           createSubject().copyWith(
-            users: null,
             status: null,
-            sortingBy: null,
+            user: null,
           ),
           equals(createSubject()),
         );
@@ -60,15 +55,13 @@ void main() {
       test('replaces every non-null parameter', () {
         expect(
           createSubject().copyWith(
-            users: const <User>[],
-            status: UsersStatus.success,
-            sortingBy: SortingBy.idAscending,
+            status: UserActivationStatus.active,
+            user: const User(),
           ),
           equals(
             createSubject(
-              users: const <User>[],
-              status: UsersStatus.success,
-              sortingBy: SortingBy.idAscending,
+              status: UserActivationStatus.active,
+              user: const User(),
             ),
           ),
         );
