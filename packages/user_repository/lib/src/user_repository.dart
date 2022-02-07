@@ -20,7 +20,6 @@ class UserRepository {
   }
 
   Future<void> postUser(User user) async {
-    int id = user.id;
     final uri =
         Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
     await http.post(

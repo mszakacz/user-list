@@ -4,6 +4,7 @@ import 'package:user_list/edit_user/view/view.dart';
 import 'package:user_list/view_user/view/view.dart';
 import 'package:user_repository/user_repository.dart';
 import 'package:user_list/new_user/view/view.dart';
+import 'package:user_list/sorting/view/view.dart';
 
 class AppRouter {
   Route? onGenerateRout(RouteSettings settings) {

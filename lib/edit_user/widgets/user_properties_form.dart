@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/edit_user/bloc/edit_user_bloc.dart';
 
-import 'dart:async';
-
 class UserPropertiesForm extends StatefulWidget {
   const UserPropertiesForm({Key? key}) : super(key: key);
 
@@ -13,21 +11,6 @@ class UserPropertiesForm extends StatefulWidget {
 
 class _UserPropertiesFormState extends State<UserPropertiesForm> {
   GlobalKey<ScaffoldState> homeScreenKey = GlobalKey<ScaffoldState>();
-
-  final TextEditingController _firstnameController = TextEditingController()
-    ..text = 'Kasia';
-  final TextEditingController _lastnameController = TextEditingController()
-    ..text = '';
-
-  String get _firstname => _firstnameController.text;
-  String get _lastname => _lastnameController.text;
-
-  @override
-  void dispose() {
-    _firstnameController.dispose();
-    _lastnameController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

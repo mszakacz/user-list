@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'models/models.dart';
-import 'user_repository.dart';
-import 'package:path_provider/path_provider.dart';
 
 class UsersListRepository {
   Future<List<User>> getUsersList() async {
@@ -15,7 +13,7 @@ class UsersListRepository {
 
     List<User> usersList = [];
     for (var jsonUser in jsonList) {
-      final user = await User.fromJson(jsonUser);
+      final user = User.fromJson(jsonUser);
       usersList.add(user);
     }
     return usersList;

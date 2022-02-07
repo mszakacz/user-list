@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:user_list/view_user/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/view_user/bloc/view_user_bloc.dart';
-import 'package:user_list/app/app.dart';
 
 class ViewUserWidget extends StatelessWidget {
   const ViewUserWidget({Key? key}) : super(key: key);
@@ -35,11 +34,11 @@ class ViewUserWidget extends StatelessWidget {
                       .pushNamed('/edit', arguments: state.user.id)
                       .whenComplete(() =>
                           context.read<ViewUserBloc>().add(GetUserFromDB())),
-                  child: Text('  Edit the user  '),
+                  child: const Text('  Edit the user  '),
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('  Delete the user  '),
+                  child: const Text('  Delete the user  '),
                   style: ElevatedButton.styleFrom(primary: Colors.red),
                 ),
               ],
