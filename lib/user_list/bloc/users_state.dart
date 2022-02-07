@@ -6,19 +6,6 @@ enum UsersStatus {
   failure,
 }
 
-enum SortingBy {
-  idDescending,
-  idAscending,
-  creationTimeDescending,
-  creationTimeAscending,
-  updateTimeDescending,
-  updateTimeAscending,
-  firstnameDescending,
-  firstnameAscending,
-  lastnameDescending,
-  lastnameAscending,
-}
-
 class UsersState extends Equatable {
   final List<User> users;
   final UsersStatus status;

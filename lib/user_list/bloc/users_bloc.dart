@@ -18,8 +18,10 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     try {
       final _usersListRepository = UsersListRepository();
       final List<User> users = await _usersListRepository.getUsersList();
+      final List<User> sortedUsers =
+          await _usersListRepository.sortList(users, state.sortingBy);
       return emit(state.copyWith(
-        users: users,
+        users: sortedUsers,
         status: UsersStatus.success,
       ));
     } catch (_) {
