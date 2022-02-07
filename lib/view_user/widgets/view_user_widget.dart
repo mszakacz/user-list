@@ -24,6 +24,10 @@ class ViewUserWidget extends StatelessWidget {
               ],
             );
 
+          case UserActivationStatus.deleted:
+            return const Center(
+                child: Text('User has been successfully deleted'));
+
           default:
             return Column(
               children: [
@@ -41,14 +45,15 @@ class ViewUserWidget extends StatelessWidget {
                               .whenComplete(() => context
                                   .read<ViewUserBloc>()
                                   .add(GetUserFromDB())),
-                          child: const Text('  Edit the user  '),
+                          child: const Text('Edit the user'),
                         ),
                       ),
                       SizedBox(
                         width: 200,
                         child: ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('  Delete the user  '),
+                          onPressed: () =>
+                              context.read<ViewUserBloc>().add(DeleteUser()),
+                          child: const Text('Delete the user'),
                           style: ElevatedButton.styleFrom(primary: Colors.red),
                         ),
                       ),

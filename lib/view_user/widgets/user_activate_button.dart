@@ -25,7 +25,7 @@ class UserActivationButton extends StatelessWidget {
             width: 200,
             child: ElevatedButton(
               onPressed: () => context.read<ViewUserBloc>().add(LockUser()),
-              child: const Text('  Lock User  '),
+              child: const Text('Lock User'),
               style: ElevatedButton.styleFrom(primary: Colors.grey[400]),
             ),
           );

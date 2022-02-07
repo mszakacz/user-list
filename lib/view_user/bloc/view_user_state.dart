@@ -5,6 +5,7 @@ enum UserActivationStatus {
   active,
   locked,
   failure,
+  deleted,
 }
 
 class UserState extends Equatable {
