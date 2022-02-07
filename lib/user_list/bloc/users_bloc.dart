@@ -9,6 +9,7 @@ part 'users_state.dart';
 class UsersBloc extends Bloc<UsersEvent, UsersState> {
   UsersBloc() : super(const UsersState()) {
     on<UpdateUsersList>(_onUpdateUsersList);
+    on<ChangeSortingMethod>(_onChangeSortingMethod);
   }
 
   Future<void> _onUpdateUsersList(
@@ -24,5 +25,10 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     } catch (_) {
       emit(state.copyWith(status: UsersStatus.failure));
     }
+  }
+
+  Future<void> _onChangeSortingMethod(
+      ChangeSortingMethod event, Emitter<UsersState> emit) async {
+    emit(state.copyWith(sortingBy: event.sortingBy));
   }
 }
