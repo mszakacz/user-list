@@ -7,11 +7,16 @@ enum UsersStatus {
 }
 
 enum SortingBy {
-  id,
-  creationTime,
-  updateTime,
-  firstname,
-  lastname,
+  idDescending,
+  idAscending,
+  creationTimeDescending,
+  creationTimeAscending,
+  updateTimeDescending,
+  updateTimeAscending,
+  firstnameDescending,
+  firstnameAscending,
+  lastnameDescending,
+  lastnameAscending,
 }
 
 class UsersState extends Equatable {
@@ -22,7 +27,7 @@ class UsersState extends Equatable {
   const UsersState({
     this.users = const <User>[],
     this.status = UsersStatus.loading,
-    this.sortingBy = SortingBy.creationTime,
+    this.sortingBy = SortingBy.creationTimeDescending,
   });
 
   @override

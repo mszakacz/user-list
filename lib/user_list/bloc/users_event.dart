@@ -8,3 +8,8 @@ abstract class UsersEvent extends Equatable {
 }
 
 class UpdateUsersList extends UsersEvent {}
+
+class ChangeSortingMethod extends UsersEvent {
+  final SortingBy? sortingBy;
+  const ChangeSortingMethod(this.sortingBy);
+}
