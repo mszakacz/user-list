@@ -12,16 +12,22 @@ class UserActivationButton extends StatelessWidget {
     return BlocBuilder<ViewUserBloc, UserState>(
       builder: (context, state) {
         if (state.status == UserActivationStatus.locked) {
-          return ElevatedButton(
-            onPressed: () => context.read<ViewUserBloc>().add(ActivateUser()),
-            child: const Text('Activate User'),
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+          return SizedBox(
+            width: 200,
+            child: ElevatedButton(
+              onPressed: () => context.read<ViewUserBloc>().add(ActivateUser()),
+              child: const Text('Activate User'),
+              style: ElevatedButton.styleFrom(primary: Colors.green),
+            ),
           );
         } else {
-          return ElevatedButton(
-            onPressed: () => context.read<ViewUserBloc>().add(LockUser()),
-            child: const Text('  Lock User  '),
-            style: ElevatedButton.styleFrom(primary: Colors.grey[400]),
+          return SizedBox(
+            width: 200,
+            child: ElevatedButton(
+              onPressed: () => context.read<ViewUserBloc>().add(LockUser()),
+              child: const Text('  Lock User  '),
+              style: ElevatedButton.styleFrom(primary: Colors.grey[400]),
+            ),
           );
         }
       },
