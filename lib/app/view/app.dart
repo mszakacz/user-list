@@ -4,6 +4,8 @@ import 'package:user_list/app/app.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
 
 class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   State<App> createState() => _AppState();
 }
