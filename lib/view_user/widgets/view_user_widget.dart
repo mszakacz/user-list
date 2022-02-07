@@ -28,18 +28,32 @@ class ViewUserWidget extends StatelessWidget {
             return Column(
               children: [
                 const UserPropertiesWidget(),
-                const UserActivationButton(),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context)
-                      .pushNamed('/edit', arguments: state.user.id)
-                      .whenComplete(() =>
-                          context.read<ViewUserBloc>().add(GetUserFromDB())),
-                  child: const Text('  Edit the user  '),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('  Delete the user  '),
-                  style: ElevatedButton.styleFrom(primary: Colors.red),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 100),
+                  child: Column(
+                    children: [
+                      const UserActivationButton(),
+                      SizedBox(
+                        width: 200,
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.of(context)
+                              .pushNamed('/edit', arguments: state.user.id)
+                              .whenComplete(() => context
+                                  .read<ViewUserBloc>()
+                                  .add(GetUserFromDB())),
+                          child: const Text('  Edit the user  '),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('  Delete the user  '),
+                          style: ElevatedButton.styleFrom(primary: Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             );
