@@ -13,13 +13,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'User List',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return RepositoryProvider<UsersRepository>.value(
+      value: usersRepository,
+      child: MaterialApp(
+        title: 'User List',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: const UsersPage(),
       ),
-      home: const UsersPage(),
     );
   }
 }
