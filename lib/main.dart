@@ -10,6 +10,8 @@ void main() {
       UsersRepository(usersApiClient: usersApiClient);
 
   runApp(
-    const App(),
+    App(
+      usersRepository: usersRepository,
+    ),
   );
 }
