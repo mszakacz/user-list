@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_list/new_user/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/new_user/cubit/new_user_cubit.dart';
+import 'package:users_repository/users_repository.dart';
 
 class NewUserPage extends StatelessWidget {
   const NewUserPage({Key? key}) : super(key: key);
@@ -15,7 +16,9 @@ class NewUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewUserCubit(),
+      create: (context) => NewUserCubit(
+        usersRepository: RepositoryProvider.of<UsersRepository>(context),
+      ),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Create a new user'),

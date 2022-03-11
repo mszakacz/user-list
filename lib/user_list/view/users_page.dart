@@ -4,6 +4,7 @@ import 'package:user_list/new_user/new_user.dart';
 import 'package:user_list/sorting/view/view.dart';
 import 'package:user_list/user_list/widgets/users_list.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
+import 'package:users_repository/users_repository.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -17,7 +18,9 @@ class UsersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UsersBloc()..add(UpdateUsersList()),
+      create: (context) => UsersBloc(
+        usersRepository: RepositoryProvider.of<UsersRepository>(context),
+      )..add(UpdateUsersList()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Users List'),
@@ -35,7 +38,10 @@ class UsersPage extends StatelessWidget {
                       SettingsPage.route(),
                     )
                     .whenComplete(
-                        () => context.read<UsersBloc>().add(UpdateUsersList()));
+                      () => context.read<UsersBloc>().add(
+                            UpdateUsersList(),
+                          ),
+                    );
               },
             ),
             IconButton(
@@ -49,7 +55,10 @@ class UsersPage extends StatelessWidget {
                       NewUserPage.route(),
                     )
                     .whenComplete(
-                        () => context.read<UsersBloc>().add(UpdateUsersList()));
+                      () => context.read<UsersBloc>().add(
+                            UpdateUsersList(),
+                          ),
+                    );
               },
             ),
             IconButton(
@@ -58,7 +67,9 @@ class UsersPage extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                context.read<UsersBloc>().add(UpdateUsersList());
+                context.read<UsersBloc>().add(
+                      UpdateUsersList(),
+                    );
               },
             )
           ],
