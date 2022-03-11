@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:users_repository/users_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
+import 'package:users_api/users_api.dart';
 
 class UserListItem extends StatelessWidget {
   const UserListItem({Key? key, required this.user}) : super(key: key);
