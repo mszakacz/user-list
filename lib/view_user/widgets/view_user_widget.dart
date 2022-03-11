@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/view_user/widgets/widgets.dart';
+import 'package:user_list/edit_user/edit_user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user_list/view_user/bloc/view_user_bloc.dart';
+import 'package:user_list/view_user/view_user.dart';
 
 class ViewUserWidget extends StatelessWidget {
   const ViewUserWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ViewUserBloc, UserState>(
+    return BlocBuilder<ViewUserBloc, ViewUserState>(
       builder: (context, state) {
         switch (state.status) {
           case UserActivationStatus.failure:
@@ -41,7 +41,9 @@ class ViewUserWidget extends StatelessWidget {
                         width: 200,
                         child: ElevatedButton(
                           onPressed: () => Navigator.of(context)
-                              .pushNamed('/edit', arguments: state.user.id)
+                              .push(
+                                EditPage.route(state.user.id),
+                              )
                               .whenComplete(() => context
                                   .read<ViewUserBloc>()
                                   .add(GetUserFromDB())),

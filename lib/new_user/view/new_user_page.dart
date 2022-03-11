@@ -6,6 +6,12 @@ import 'package:user_list/new_user/cubit/new_user_cubit.dart';
 class NewUserPage extends StatelessWidget {
   const NewUserPage({Key? key}) : super(key: key);
 
+  static Route<void> route() {
+    return MaterialPageRoute(
+      builder: (context) => const NewUserPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
