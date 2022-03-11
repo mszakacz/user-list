@@ -1,23 +1,37 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:http/http.dart' as http;
-import 'models/models.dart';
-import 'package:user_repository/const/enums.dart';
+import 'package:users_repository/const/enums.dart';
+import 'package:users_api/users_api.dart';
 
-class UsersListRepository {
+class UsersRepository {
+  const UsersRepository({required this.usersApiClient});
+
+  final UsersApiClient usersApiClient;
+
+  Future<User> getUser(int id) async {
+    return await usersApiClient.getUser(id);
+  }
+
+  Future<void> deleteUser(int id) async {
+    return await usersApiClient.deleteUser(id);
+  }
+
+  Future<void> postUser(User user) async {
+    await usersApiClient.postUser(user);
+  }
+
+  Future<void> updateUser(User user) async {
+    await usersApiClient.updateUser(user);
+  }
+
+  Future<void> createAndPostNewUser(String name, String lastname) async {
+    return await usersApiClient.createAndPostNewUser(name, lastname);
+  }
+
   Future<List<User>> getUsersList() async {
-    // https://assessment-users-backend.herokuapp.com/users.json
-    final uri =
-        Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
-    final response = await http.get(uri);
-    final jsonList = jsonDecode(response.body);
-
-    List<User> usersList = [];
-    for (var jsonUser in jsonList) {
-      final user = User.fromJson(jsonUser);
-      usersList.add(user);
-    }
-    return usersList;
+    return await usersApiClient.getUsersList();
   }
 
   Future<List<User>> sortList(List<User> usersList, SortingBy sortingBy) async {
