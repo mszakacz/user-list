@@ -7,6 +7,12 @@ class EditPage extends StatelessWidget {
   final int id;
   const EditPage({Key? key, required this.id}) : super(key: key);
 
+  static Route<void> route(int id) {
+    return MaterialPageRoute(
+      builder: (context) => EditPage(id: id),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

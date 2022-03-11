@@ -8,6 +8,12 @@ class ViewUserPage extends StatelessWidget {
   final User user;
   const ViewUserPage({Key? key, required this.user}) : super(key: key);
 
+  static Route<void> route(User user) {
+    return MaterialPageRoute(
+      builder: (context) => ViewUserPage(user: user),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
