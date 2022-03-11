@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:users_repository/users_repository.dart';
 import 'package:user_list/view_user/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/view_user/bloc/view_user_bloc.dart';

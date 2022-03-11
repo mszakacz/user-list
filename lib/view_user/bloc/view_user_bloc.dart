@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:async';
-import 'package:user_repository/user_repository.dart';
+import 'package:users_repository/users_repository.dart';
+import 'package:users_api/users_api.dart';
 
 part 'view_user_event.dart';
 part 'view_user_state.dart';
@@ -36,7 +37,9 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
       GetUserFromDB event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
-      final UserRepository _userRepository = UserRepository();
+      final UsersApiClient _usersApi = UsersApiClient();
+      final UsersRepository _userRepository =
+          UsersRepository(usersApiClient: _usersApi);
       final user = await _userRepository.getUser(state.user.id);
       UserActivationStatus status;
       if (user.status == 'active') {
@@ -54,7 +57,10 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
       ActivateUser event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
-      final UserRepository _userRepository = UserRepository();
+      final UsersApiClient _usersApi = UsersApiClient();
+
+      final UsersRepository _userRepository =
+          UsersRepository(usersApiClient: _usersApi);
       User user = state.user.copyWith(status: 'active');
       await _userRepository.updateUser(user);
       emit(state.copyWith(status: UserActivationStatus.active, user: user));
@@ -66,7 +72,10 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
   Future<void> _onLockUser(LockUser event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
-      final UserRepository _userRepository = UserRepository();
+      final UsersApiClient _usersApi = UsersApiClient();
+
+      final UsersRepository _userRepository =
+          UsersRepository(usersApiClient: _usersApi);
       User user = state.user.copyWith(status: 'locked');
       await _userRepository.updateUser(user);
       emit(state.copyWith(status: UserActivationStatus.locked, user: user));
@@ -78,7 +87,10 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
   Future<void> _onDeleteUser(DeleteUser event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
-      final UserRepository _userRepository = UserRepository();
+      final UsersApiClient _usersApi = UsersApiClient();
+
+      final UsersRepository _userRepository =
+          UsersRepository(usersApiClient: _usersApi);
       await _userRepository.deleteUser(state.user.id);
       emit(state.copyWith(
           status: UserActivationStatus.deleted, user: const User()));

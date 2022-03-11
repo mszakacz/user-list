@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
-import 'package:user_repository/user_repository.dart';
+import 'package:users_repository/users_repository.dart';
 
 void main() {
   group('UsersState', () {
