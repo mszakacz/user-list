@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_list/view_user/view/view.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/user_list/bloc/users_bloc.dart';
@@ -22,7 +23,9 @@ class UserListItem extends StatelessWidget {
           ),
         ),
         onTap: () => Navigator.of(context)
-            .pushNamed('/view', arguments: user)
+            .push(
+              ViewUserPage.route(user),
+            )
             .whenComplete(
                 () => context.read<UsersBloc>().add(UpdateUsersList())),
       ),
