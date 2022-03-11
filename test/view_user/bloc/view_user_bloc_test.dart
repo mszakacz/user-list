@@ -18,7 +18,7 @@ void main() {
     test('initial state', () {
       expect(
         viewUserBloc.state,
-        const UserState(
+        const ViewUserState(
           status: UserActivationStatus.loading,
           user: User(),
         ),
@@ -36,12 +36,12 @@ void main() {
     tearDown(() {
       viewUserBloc.close();
     });
-    blocTest<ViewUserBloc, UserState>(
+    blocTest<ViewUserBloc, ViewUserState>(
       'Loading first',
       build: () => viewUserBloc,
       act: (bloc) => bloc.add(ActivateUser()),
       expect: () => [
-        const UserState(
+        const ViewUserState(
           status: UserActivationStatus.loading,
           user: User(),
         ),

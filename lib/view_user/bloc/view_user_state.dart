@@ -8,10 +8,10 @@ enum UserActivationStatus {
   deleted,
 }
 
-class UserState extends Equatable {
+class ViewUserState extends Equatable {
   final UserActivationStatus status;
   final User user;
-  const UserState({
+  const ViewUserState({
     this.status = UserActivationStatus.loading,
     this.user = const User(),
   });
@@ -19,11 +19,11 @@ class UserState extends Equatable {
   @override
   List<Object> get props => [status, user];
 
-  UserState copyWith({
+  ViewUserState copyWith({
     User? user,
     UserActivationStatus? status,
   }) {
-    return UserState(
+    return ViewUserState(
       user: user ?? this.user,
       status: status ?? this.status,
     );

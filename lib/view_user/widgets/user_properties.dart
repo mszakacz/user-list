@@ -8,7 +8,7 @@ class UserPropertiesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ViewUserBloc, UserState>(
+    return BlocBuilder<ViewUserBloc, ViewUserState>(
       builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,

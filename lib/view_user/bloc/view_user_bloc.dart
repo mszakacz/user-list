@@ -7,9 +7,9 @@ import 'package:users_api/users_api.dart';
 part 'view_user_event.dart';
 part 'view_user_state.dart';
 
-class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
+class ViewUserBloc extends Bloc<ViewUserEvent, ViewUserState> {
   ViewUserBloc()
-      : super(const UserState(status: UserActivationStatus.loading)) {
+      : super(const ViewUserState(status: UserActivationStatus.loading)) {
     on<ActivateUser>(_onActivateUser);
     on<LockUser>(_onLockUser);
     on<GetUserFromDB>(_onGetUserFromDB);
@@ -18,7 +18,7 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
   }
 
   Future<void> _onGetUserFromMemory(
-      GetUserFromMemory event, Emitter<UserState> emit) async {
+      GetUserFromMemory event, Emitter<ViewUserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       UserActivationStatus status;
@@ -34,7 +34,7 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
   }
 
   Future<void> _onGetUserFromDB(
-      GetUserFromDB event, Emitter<UserState> emit) async {
+      GetUserFromDB event, Emitter<ViewUserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       final UsersApiClient _usersApi = UsersApiClient();
@@ -54,7 +54,7 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
   }
 
   Future<void> _onActivateUser(
-      ActivateUser event, Emitter<UserState> emit) async {
+      ActivateUser event, Emitter<ViewUserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       final UsersApiClient _usersApi = UsersApiClient();
@@ -69,7 +69,7 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
     }
   }
 
-  Future<void> _onLockUser(LockUser event, Emitter<UserState> emit) async {
+  Future<void> _onLockUser(LockUser event, Emitter<ViewUserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       final UsersApiClient _usersApi = UsersApiClient();
@@ -84,7 +84,8 @@ class ViewUserBloc extends Bloc<ViewUserEvent, UserState> {
     }
   }
 
-  Future<void> _onDeleteUser(DeleteUser event, Emitter<UserState> emit) async {
+  Future<void> _onDeleteUser(
+      DeleteUser event, Emitter<ViewUserState> emit) async {
     emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       final UsersApiClient _usersApi = UsersApiClient();

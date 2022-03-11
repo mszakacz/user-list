@@ -4,11 +4,11 @@ import 'package:users_repository/users_repository.dart';
 
 void main() {
   group('UserState', () {
-    UserState createSubject({
+    ViewUserState createSubject({
       UserActivationStatus status = UserActivationStatus.loading,
       User user = const User(),
     }) {
-      return UserState(
+      return ViewUserState(
         status: status,
         user: user,
       );
