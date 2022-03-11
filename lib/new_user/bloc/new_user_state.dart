@@ -1,4 +1,4 @@
-part of 'new_user_cubit.dart';
+part of 'new_user_bloc.dart';
 
 enum NewUserStatus {
   initial,
@@ -12,11 +12,18 @@ class NewUserState extends Equatable {
   final String firstname;
   final String lastname;
 
-  const NewUserState(
-      {required this.status, required this.firstname, required this.lastname});
+  const NewUserState({
+    required this.status,
+    required this.firstname,
+    required this.lastname,
+  });
 
   @override
-  List<Object> get props => [status, firstname, lastname];
+  List<Object> get props => [
+        status,
+        firstname,
+        lastname,
+      ];
 
   NewUserState copyWith({
     NewUserStatus? status,
