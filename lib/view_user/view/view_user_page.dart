@@ -17,7 +17,11 @@ class ViewUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ViewUserBloc()..add(GetUserFromMemory(user)),
+      create: (context) => ViewUserBloc(
+        usersRepository: RepositoryProvider.of<UsersRepository>(
+          context,
+        ),
+      )..add(GetUserFromMemory(user)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('User Page'),

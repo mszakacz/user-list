@@ -2,13 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:async';
 import 'package:users_repository/users_repository.dart';
-import 'package:users_api/users_api.dart';
 
 part 'edit_user_event.dart';
 part 'edit_user_state.dart';
 
 class EditUserBloc extends Bloc<EditUserEvent, UserState> {
-  EditUserBloc()
+  EditUserBloc({required this.usersRepository})
       : super(const UserState(status: EditUserStatus.loading, user: User())) {
     on<SetUserByID>(_onSetUserByID);
     on<NameEditing>(_onNameEditing);
@@ -16,14 +15,13 @@ class EditUserBloc extends Bloc<EditUserEvent, UserState> {
     on<SaveUser>(_onSaveUser);
   }
 
+  final UsersRepository usersRepository;
+
   Future<void> _onSetUserByID(
       SetUserByID event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: EditUserStatus.loading));
     try {
-      final UsersApiClient _usersApi = UsersApiClient();
-      final UsersRepository _userRepository =
-          UsersRepository(usersApiClient: _usersApi);
-      final user = await _userRepository.getUser(event.id);
+      final user = await usersRepository.getUser(event.id);
       emit(state.copyWith(user: user, status: EditUserStatus.edit));
     } catch (_) {
       emit(state.copyWith(status: EditUserStatus.failure));
@@ -41,10 +39,7 @@ class EditUserBloc extends Bloc<EditUserEvent, UserState> {
   Future<void> _onSaveUser(SaveUser event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: EditUserStatus.posting));
     try {
-      final UsersApiClient _usersApi = UsersApiClient();
-      final UsersRepository _userRepository =
-          UsersRepository(usersApiClient: _usersApi);
-      await _userRepository.updateUser(state.user);
+      await usersRepository.updateUser(state.user);
     } catch (_) {
       emit(state.copyWith(status: EditUserStatus.failure));
     }
