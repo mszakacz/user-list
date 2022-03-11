@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/app/app.dart';
-import 'package:user_list/user_list/bloc/users_bloc.dart';
+import 'package:user_list/user_list/user_list.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
