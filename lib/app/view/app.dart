@@ -13,20 +13,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<UsersBloc>(
-          create: (context) => UsersBloc()..add(UpdateUsersList()),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'User List',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: const UsersPage(),
+    return MaterialApp(
+      title: 'User List',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: const UsersPage(),
     );
   }
 }
