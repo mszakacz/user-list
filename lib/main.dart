@@ -4,10 +4,9 @@ import 'package:users_api/users_api.dart';
 import 'package:users_repository/users_repository.dart';
 
 void main() {
-  final UsersApiClient usersApiClient = UsersApiClient();
+  final usersApiClient = UsersApiClient();
 
-  final UsersRepository usersRepository =
-      UsersRepository(usersApiClient: usersApiClient);
+  final usersRepository = UsersRepository(usersApiClient: usersApiClient);
 
   runApp(
     App(
