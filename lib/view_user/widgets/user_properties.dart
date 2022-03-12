@@ -10,31 +10,35 @@ class UserPropertiesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ViewUserBloc, ViewUserState>(
       builder: (context, state) {
-        return Row(
+        return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                UserPropertyNameWidget(text: 'id:'),
-                UserPropertyNameWidget(text: 'Name:'),
-                UserPropertyNameWidget(text: 'Lastname:'),
-                UserPropertyNameWidget(text: 'Status:'),
-                UserPropertyNameWidget(text: 'Created at:'),
-                UserPropertyNameWidget(text: 'Updated at:'),
-              ],
+            const SizedBox(height: 30),
+            UserPropertyWidget(
+              name: 'id:',
+              value: state.user.id.toString(),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                UserPropertyValueWidget(text: state.user.id.toString()),
-                UserPropertyValueWidget(text: state.user.firstname),
-                UserPropertyValueWidget(text: state.user.lastname),
-                UserPropertyValueWidget(text: state.user.status),
-                UserPropertyValueWidget(text: dateString(state.user.createdAt)),
-                UserPropertyValueWidget(text: dateString(state.user.updatedAt)),
-              ],
+            UserPropertyWidget(
+              name: 'Name:',
+              value: state.user.firstname,
             ),
+            UserPropertyWidget(
+              name: 'Lastname:',
+              value: state.user.lastname,
+            ),
+            UserPropertyWidget(
+              name: 'Status:',
+              value: state.user.status,
+            ),
+            UserPropertyWidget(
+              name: 'Created at:',
+              value: dateString(state.user.createdAt),
+            ),
+            UserPropertyWidget(
+              name: 'Updated at:',
+              value: dateString(state.user.updatedAt),
+            ),
+            const SizedBox(height: 30),
           ],
         );
       },
