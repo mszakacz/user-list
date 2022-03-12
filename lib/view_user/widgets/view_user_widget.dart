@@ -31,9 +31,12 @@ class ViewUserWidget extends StatelessWidget {
           default:
             return Column(
               children: [
-                const UserPropertiesWidget(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 100),
+                const Flexible(
+                  flex: 6,
+                  child: UserPropertiesWidget(),
+                ),
+                Flexible(
+                  flex: 4,
                   child: Column(
                     children: [
                       const UserActivationButton(),
