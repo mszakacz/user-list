@@ -17,14 +17,7 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UsersBloc(
-        usersRepository: RepositoryProvider.of<UsersRepository>(context),
-      )..add(
-          UpdateUsersList(),
-        ),
-      child: const UsersView(),
-    );
+    return const UsersView();
   }
 }
 

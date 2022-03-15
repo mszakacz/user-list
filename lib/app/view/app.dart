@@ -15,13 +15,20 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider<UsersRepository>.value(
       value: usersRepository,
-      child: MaterialApp(
-        title: 'User List',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: BlocProvider(
+        create: (context) => UsersBloc(
+          usersRepository: RepositoryProvider.of<UsersRepository>(context),
+        )..add(
+            UpdateUsersList(),
+          ),
+        child: MaterialApp(
+          title: 'User List',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: const UsersPage(),
         ),
-        home: const UsersPage(),
       ),
     );
   }
