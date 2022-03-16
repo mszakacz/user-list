@@ -30,10 +30,13 @@ class UsersApiClient {
 
   final http.Client _httpClient;
 
+  final String authority = 'assessment-users-backend.herokuapp.com';
+
   Future<User> getUser(int id) async {
-    // https://assessment-users-backend.herokuapp.com/users/56.json
-    final uri = Uri.https('assessment-users-backend.herokuapp.com',
-        '/users/${id.toString()}.json');
+    final uri = Uri.https(
+      authority,
+      '/users/${id.toString()}.json',
+    );
     final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
       throw GetUserRequestFailure();
@@ -47,8 +50,10 @@ class UsersApiClient {
   }
 
   Future<void> deleteUser(int id) async {
-    final uri = Uri.https('assessment-users-backend.herokuapp.com',
-        '/users/${id.toString()}.json');
+    final uri = Uri.https(
+      authority,
+      '/users/${id.toString()}.json',
+    );
     final response = await _httpClient.delete(uri);
     if (response.statusCode != 200) {
       throw DeleteUserRequestFailure();
@@ -56,8 +61,10 @@ class UsersApiClient {
   }
 
   Future<void> postUser(String firstname, String lastname) async {
-    final uri =
-        Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
+    final uri = Uri.https(
+      authority,
+      '/users.json',
+    );
 
     final response = await _httpClient.post(
       uri,
@@ -79,7 +86,7 @@ class UsersApiClient {
   Future<void> updateUser(User user) async {
     int id = user.id;
     final uri = Uri.https(
-      'assessment-users-backend.herokuapp.com',
+      authority,
       '/users/${id.toString()}.json',
     );
 
@@ -97,9 +104,10 @@ class UsersApiClient {
   }
 
   Future<List<User>> getUsersList() async {
-    // https://assessment-users-backend.herokuapp.com/users.json
-    final uri =
-        Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
+    final uri = Uri.https(
+      authority,
+      '/users.json',
+    );
     final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
       throw GetUsersListRequestFailure();
