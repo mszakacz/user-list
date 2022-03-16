@@ -25,11 +25,16 @@ class UsersListDeserializationFailure implements Exception {}
 class GetUsersListRequestFailure implements Exception {}
 
 class UsersApiClient {
+  UsersApiClient({http.Client? httpClient})
+      : _httpClient = httpClient ?? http.Client();
+
+  final http.Client _httpClient;
+
   Future<User> getUser(int id) async {
     // https://assessment-users-backend.herokuapp.com/users/56.json
     final uri = Uri.https('assessment-users-backend.herokuapp.com',
         '/users/${id.toString()}.json');
-    final response = await http.get(uri);
+    final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
       throw GetUserRequestFailure();
     }
@@ -44,24 +49,29 @@ class UsersApiClient {
   Future<void> deleteUser(int id) async {
     final uri = Uri.https('assessment-users-backend.herokuapp.com',
         '/users/${id.toString()}.json');
-    final response = await http.delete(uri);
+    final response = await _httpClient.delete(uri);
     if (response.statusCode != 200) {
       throw DeleteUserRequestFailure();
     }
   }
 
-  Future<void> postUser(User user) async {
+  Future<void> postUser(String firstname, String lastname) async {
     final uri =
         Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
 
-    final response = await http.post(
+    final response = await _httpClient.post(
       uri,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(user),
+      body: jsonEncode(
+        User(
+          firstname: firstname,
+          lastname: lastname,
+        ),
+      ),
     );
-    if (response.statusCode != 200) {
+    if (response.statusCode < 200 || response.statusCode > 299) {
       throw PostUserRequestFailure();
     }
   }
@@ -72,39 +82,27 @@ class UsersApiClient {
       'assessment-users-backend.herokuapp.com',
       '/users/${id.toString()}.json',
     );
-    final response = await http.patch(
-      uri,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(user),
-    );
 
-    if (response.statusCode != 200) {
+    try {
+      await _httpClient.patch(
+        uri,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(user),
+      );
+    } catch (_) {
       throw UpdateUserRequestFailure();
     }
-  }
-
-  Future<void> createAndPostNewUser(String name, String lastname) {
-    User user = User(
-      id: 0, // server automatically sets it
-      lastname: lastname,
-      firstname: name,
-      status: 'active',
-      createdAt: '', // server automatically sets it
-      updatedAt: '', // server automatically sets it
-      url: '', // server automatically sets it
-    );
-    return postUser(user);
   }
 
   Future<List<User>> getUsersList() async {
     // https://assessment-users-backend.herokuapp.com/users.json
     final uri =
         Uri.https('assessment-users-backend.herokuapp.com', '/users.json');
-    final response = await http.get(uri);
+    final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
-      GetUsersListRequestFailure();
+      throw GetUsersListRequestFailure();
     }
     try {
       final jsonList = jsonDecode(response.body);
