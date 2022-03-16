@@ -220,16 +220,19 @@ void main() {
         ).called(0);
       });
 
-      test('throws PostUserRequestFailure on failure', () async {
+      test('throws PostUserRequestFailure on non-200 response', () async {
         final response = MockResponse();
         when(() => response.statusCode).thenReturn(400);
         when(
           () => httpClient.post(
             any(),
+            headers: any(named: 'headers'),
+            body: any(named: 'body'),
           ),
         ).thenAnswer((_) async => response);
-        expect(
-          () async => await usersApiClient.postUser(
+
+        await expectLater(
+          () => usersApiClient.postUser(
             firstname,
             lastname,
           ),
