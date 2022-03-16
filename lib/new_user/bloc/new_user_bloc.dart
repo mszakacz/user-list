@@ -26,7 +26,7 @@ class NewUserBloc extends Bloc<NewUserEvent, NewUserState> {
       state.copyWith(status: NewUserStatus.posting),
     );
     try {
-      await usersRepository.createAndPostNewUser(
+      await usersRepository.postUser(
         event.firstname,
         event.lastname,
       );
