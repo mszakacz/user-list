@@ -18,16 +18,12 @@ class UsersRepository {
     return await usersApiClient.deleteUser(id);
   }
 
-  Future<void> postUser(User user) async {
-    await usersApiClient.postUser(user);
+  Future<void> postUser(String firstname, String lastname) async {
+    await usersApiClient.postUser(firstname, lastname);
   }
 
   Future<void> updateUser(User user) async {
     await usersApiClient.updateUser(user);
-  }
-
-  Future<void> createAndPostNewUser(String name, String lastname) async {
-    return await usersApiClient.createAndPostNewUser(name, lastname);
   }
 
   Future<List<User>> getUsersList() async {
