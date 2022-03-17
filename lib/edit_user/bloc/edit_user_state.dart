@@ -5,13 +5,14 @@ enum EditUserStatus {
   posting,
   loading,
   failure,
+  success,
 }
 
-class UserState extends Equatable {
+class EditUserState extends Equatable {
   final User user;
   final EditUserStatus status;
 
-  const UserState({
+  const EditUserState({
     required this.user,
     required this.status,
   });
@@ -19,11 +20,11 @@ class UserState extends Equatable {
   @override
   List<Object> get props => [user, status];
 
-  UserState copyWith({
+  EditUserState copyWith({
     User? user,
     EditUserStatus? status,
   }) {
-    return UserState(
+    return EditUserState(
       user: user ?? this.user,
       status: status ?? this.status,
     );

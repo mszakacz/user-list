@@ -23,7 +23,7 @@ class _UserPropertiesFormState extends State<UserPropertiesForm> {
             child: Row(
               children: [
                 Expanded(
-                  child: BlocBuilder<EditUserBloc, UserState>(
+                  child: BlocBuilder<EditUserBloc, EditUserState>(
                     builder: (context, state) {
                       return TextFormField(
                         initialValue: state.user.firstname,
@@ -46,7 +46,7 @@ class _UserPropertiesFormState extends State<UserPropertiesForm> {
             child: Row(
               children: [
                 Expanded(
-                  child: BlocBuilder<EditUserBloc, UserState>(
+                  child: BlocBuilder<EditUserBloc, EditUserState>(
                     builder: (context, state) {
                       return TextFormField(
                         initialValue: state.user.lastname,
