@@ -8,7 +8,7 @@ class EditUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditUserBloc, UserState>(
+    return BlocBuilder<EditUserBloc, EditUserState>(
       builder: (context, state) {
         switch (state.status) {
           case EditUserStatus.failure:
