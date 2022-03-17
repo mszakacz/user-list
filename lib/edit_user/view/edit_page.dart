@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:user_list/edit_user/bloc/edit_user_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user_list/edit_user/widgets/edit_user_widget.dart';
+import 'package:user_list/edit_user/edit_user.dart';
 import 'package:users_repository/users_repository.dart';
 
 class EditPage extends StatelessWidget {
@@ -23,6 +22,39 @@ class EditPage extends StatelessWidget {
       create: (context) => EditUserBloc(
         usersRepository: RepositoryProvider.of<UsersRepository>(context),
       )..add(SetUserByID(id)),
+      child: EditUserView(),
+    );
+  }
+}
+
+class EditUserView extends StatelessWidget {
+  const EditUserView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<EditUserBloc, EditUserState>(
+      listenWhen: (previous, current) => previous.status != current.status,
+      listener: (context, state) {
+        if (state.status == EditUserStatus.failure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Failed to edit the User'),
+              ),
+            );
+        }
+
+        if (state.status == EditUserStatus.success) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('User has been edited successfully'),
+              ),
+            );
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Edit User'),
