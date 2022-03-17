@@ -157,7 +157,7 @@ void main() {
     group('deleteUser', () {
       test('makes correct http request', () async {
         final response = MockResponse();
-        when(() => response.statusCode).thenReturn(200);
+        when(() => response.statusCode).thenReturn(204);
         when(() => response.body).thenReturn('{}');
         when(
           () => httpClient.delete(
@@ -179,7 +179,7 @@ void main() {
 
       test('throws DeleteUserRequestFailure on non-200 response', () async {
         final response = MockResponse();
-        when(() => response.statusCode).thenReturn(400);
+        when(() => response.statusCode).thenReturn(422);
         when(
           () => httpClient.delete(
             any(),
@@ -272,6 +272,8 @@ void main() {
         when(
           () => httpClient.patch(
             any(),
+            headers: any(named: 'headers'),
+            body: any(named: 'body'),
           ),
         ).thenAnswer((_) async => response);
         expect(
