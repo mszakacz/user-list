@@ -38,7 +38,7 @@ class UsersApiClient {
       '/users/${id.toString()}.json',
     );
     final response = await _httpClient.get(uri);
-    if (response.statusCode != 200) {
+    if (response.statusCode < 200 || response.statusCode > 299) {
       throw GetUserRequestFailure();
     }
     try {
@@ -55,7 +55,7 @@ class UsersApiClient {
       '/users/${id.toString()}.json',
     );
     final response = await _httpClient.delete(uri);
-    if (response.statusCode != 200) {
+    if (response.statusCode < 200 || response.statusCode > 299) {
       throw DeleteUserRequestFailure();
     }
   }
@@ -89,16 +89,14 @@ class UsersApiClient {
       authority,
       '/users/${id.toString()}.json',
     );
-
-    try {
-      await _httpClient.patch(
-        uri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(user),
-      );
-    } catch (_) {
+    final response = await _httpClient.patch(
+      uri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(user),
+    );
+    if (response.statusCode < 200 || response.statusCode > 299) {
       throw UpdateUserRequestFailure();
     }
   }
