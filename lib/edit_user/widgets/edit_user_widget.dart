@@ -11,9 +11,6 @@ class EditUserWidget extends StatelessWidget {
     return BlocBuilder<EditUserBloc, EditUserState>(
       builder: (context, state) {
         switch (state.status) {
-          case EditUserStatus.failure:
-            return const Center(child: Text('Failed to edit the User'));
-
           case EditUserStatus.edit:
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
