@@ -11,7 +11,7 @@ class UserActivationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ViewUserBloc, ViewUserState>(
       builder: (context, state) {
-        if (state.status == UserActivationStatus.locked) {
+        if (state.status == ViewUserStatus.locked) {
           return SizedBox(
             width: 200,
             child: ElevatedButton(

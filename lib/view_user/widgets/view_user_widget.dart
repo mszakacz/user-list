@@ -11,10 +11,7 @@ class ViewUserWidget extends StatelessWidget {
     return BlocBuilder<ViewUserBloc, ViewUserState>(
       builder: (context, state) {
         switch (state.status) {
-          case UserActivationStatus.failure:
-            return const Center(child: Text('Failed to get/post the User'));
-
-          case UserActivationStatus.loading:
+          case ViewUserStatus.loading:
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -24,9 +21,8 @@ class ViewUserWidget extends StatelessWidget {
               ],
             );
 
-          case UserActivationStatus.deleted:
-            return const Center(
-                child: Text('User has been successfully deleted'));
+          case ViewUserStatus.deleted:
+            return const Scaffold();
 
           default:
             return Column(
