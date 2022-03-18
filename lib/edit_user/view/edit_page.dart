@@ -22,7 +22,7 @@ class EditPage extends StatelessWidget {
       create: (context) => EditUserBloc(
         usersRepository: RepositoryProvider.of<UsersRepository>(context),
       )..add(SetUserByID(id)),
-      child: EditUserView(),
+      child: const EditUserView(),
     );
   }
 }
@@ -51,6 +51,17 @@ class EditUserView extends StatelessWidget {
             ..showSnackBar(
               const SnackBar(
                 content: Text('User has been edited successfully'),
+              ),
+            );
+        }
+
+        if (state.status == EditUserStatus.failureToGet) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Failed to get a User from Database'),
               ),
             );
         }
