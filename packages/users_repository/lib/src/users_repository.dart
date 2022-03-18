@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:ffi';
-import 'package:http/http.dart' as http;
 import 'package:users_repository/const/enums.dart';
 import 'package:users_api/users_api.dart';
 
