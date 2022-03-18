@@ -6,6 +6,7 @@ enum EditUserStatus {
   loading,
   failure,
   success,
+  failureToGet,
 }
 
 class EditUserState extends Equatable {
