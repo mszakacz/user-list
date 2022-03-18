@@ -8,7 +8,9 @@ part 'view_user_state.dart';
 
 class ViewUserBloc extends Bloc<ViewUserEvent, ViewUserState> {
   ViewUserBloc({required this.usersRepository})
-      : super(const ViewUserState(status: UserActivationStatus.loading)) {
+      : super(
+          const ViewUserState(),
+        ) {
     on<ActivateUser>(_onActivateUser);
     on<LockUser>(_onLockUser);
     on<GetUserFromDB>(_onGetUserFromDB);
@@ -20,69 +22,112 @@ class ViewUserBloc extends Bloc<ViewUserEvent, ViewUserState> {
 
   Future<void> _onGetUserFromMemory(
       GetUserFromMemory event, Emitter<ViewUserState> emit) async {
-    emit(state.copyWith(status: UserActivationStatus.loading));
+    emit(
+      const ViewUserState(status: ViewUserStatus.loading),
+    );
     try {
-      UserActivationStatus status;
+      ViewUserStatus status;
       if (event.user.status == 'active') {
-        status = UserActivationStatus.active;
+        status = ViewUserStatus.active;
       } else {
-        status = UserActivationStatus.locked;
+        status = ViewUserStatus.locked;
       }
-      emit(state.copyWith(user: event.user, status: status));
+      emit(
+        state.copyWith(
+          user: event.user,
+          status: status,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: UserActivationStatus.failure));
+      emit(
+        state.copyWith(message: ViewUserMessage.failureToGet),
+      );
     }
   }
 
   Future<void> _onGetUserFromDB(
       GetUserFromDB event, Emitter<ViewUserState> emit) async {
-    emit(state.copyWith(status: UserActivationStatus.loading));
+    emit(state.copyWith(status: ViewUserStatus.loading));
     try {
       final user = await usersRepository.getUser(state.user.id);
-      UserActivationStatus status;
+      ViewUserStatus status;
       if (user.status == 'active') {
-        status = UserActivationStatus.active;
+        status = ViewUserStatus.active;
       } else {
-        status = UserActivationStatus.locked;
+        status = ViewUserStatus.locked;
       }
-      emit(state.copyWith(user: user, status: status));
+      emit(
+        ViewUserState(
+          user: user,
+          status: status,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: UserActivationStatus.failure));
+      emit(
+        state.copyWith(message: ViewUserMessage.failureToGet),
+      );
     }
   }
 
   Future<void> _onActivateUser(
       ActivateUser event, Emitter<ViewUserState> emit) async {
-    emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       User user = state.user.copyWith(status: 'active');
       await usersRepository.updateUser(user);
-      emit(state.copyWith(status: UserActivationStatus.active, user: user));
+      emit(
+        state.copyWith(
+          status: ViewUserStatus.active,
+          user: user,
+          message: ViewUserMessage.activated,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: UserActivationStatus.failure));
+      emit(
+        state.copyWith(message: ViewUserMessage.failureToActivate),
+      );
+      emit(
+        state.copyWith(message: ViewUserMessage.empty),
+      );
     }
   }
 
   Future<void> _onLockUser(LockUser event, Emitter<ViewUserState> emit) async {
-    emit(state.copyWith(status: UserActivationStatus.loading));
     try {
       User user = state.user.copyWith(status: 'locked');
       await usersRepository.updateUser(user);
-      emit(state.copyWith(status: UserActivationStatus.locked, user: user));
+      emit(
+        state.copyWith(
+          status: ViewUserStatus.locked,
+          user: user,
+          message: ViewUserMessage.locked,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: UserActivationStatus.failure));
+      emit(
+        state.copyWith(message: ViewUserMessage.failureToLock),
+      );
+      emit(
+        state.copyWith(message: ViewUserMessage.empty),
+      );
     }
   }
 
   Future<void> _onDeleteUser(
       DeleteUser event, Emitter<ViewUserState> emit) async {
-    emit(state.copyWith(status: UserActivationStatus.loading));
+    emit(state.copyWith(status: ViewUserStatus.loading));
     try {
       await usersRepository.deleteUser(state.user.id);
-      emit(state.copyWith(
-          status: UserActivationStatus.deleted, user: const User()));
+      emit(
+        state.copyWith(
+          status: ViewUserStatus.deleted,
+          user: const User(),
+          message: ViewUserMessage.deleted,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: UserActivationStatus.failure));
+      emit(
+        state.copyWith(message: ViewUserMessage.failureToDelete),
+      );
     }
   }
 }
