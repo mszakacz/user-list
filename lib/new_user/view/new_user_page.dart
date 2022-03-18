@@ -18,6 +18,41 @@ class NewUserPage extends StatelessWidget {
       create: (context) => NewUserBloc(
         usersRepository: RepositoryProvider.of<UsersRepository>(context),
       ),
+      child: const NewUserView(),
+    );
+  }
+}
+
+class NewUserView extends StatelessWidget {
+  const NewUserView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<NewUserBloc, NewUserState>(
+      listenWhen: (previous, current) => previous.status != current.status,
+      listener: (context, state) {
+        if (state.status == NewUserStatus.saved) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('New User has been saved'),
+              ),
+            );
+        }
+
+        if (state.status == NewUserStatus.failure) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Fail to save a new user'),
+              ),
+            );
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Create a new user'),
@@ -27,14 +62,6 @@ class NewUserPage extends StatelessWidget {
             switch (state.status) {
               case NewUserStatus.initial:
                 return const NewUserForm();
-
-              case NewUserStatus.failure:
-                return const Center(child: Text('Failed to post new user'));
-
-              case NewUserStatus.saved:
-                return const Center(
-                    child: Text(
-                        'New user has been created and posted successfully'));
 
               default:
                 return Center(
