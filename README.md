@@ -15,7 +15,7 @@ Mobile App presents the List of Users.
 - lock/activate the user
 
 ### Project Description:
-App displays the List of users. It’s connected with external data base and communicates with API. App allows the User to view the list of users, view the specific user, activate or lock the specific user, delete the specific user, sort the list of users (by created time, id, name or last name), create a new user or edit the user’s properties like name or last name. App always return some information to the UI to make user know in what state app is working (SnackBars, Loading indicators, …). App uses BLoC state management. Application is divided into Presentation Layout (UI and BLoC), Business Layer (UsersRepository package), Data Layer (UsersApiClient package). Code is divided into specific functionalities and responsibilities. Code is written in the high standards way to make it easy to maintain and easy to test. Tests for every file are provided (BLoC tests, unit tests, widget tests).
+App that displays the list of users. It communicates with REST API. App allows user to view the list of users, view, create, edit, activate, lock or delete user. Main list can be sorted by created time, id, name or last name. You can update users first and last name. App uses Loading Indicators and SnackBars to make user experience smoother. Application is divided into Presentation Layout (UI and BLoC), Business Layer (UsersRepository package), Data Layer (UsersApiClient package). Code is written in the high standards way to make it easy to maintain and easy to test. Project also contains BLoC tests, unit tests, widget tests.
 
 ### Key technologies:
 BLoC, REST API, widget tests, unit tests, Http
