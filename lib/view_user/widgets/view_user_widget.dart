@@ -36,6 +36,7 @@ class ViewUserWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       const UserActivationButton(),
+                      const SizedBox(height: 20),
                       SizedBox(
                         width: 200,
                         child: ElevatedButton(
@@ -49,6 +50,7 @@ class ViewUserWidget extends StatelessWidget {
                           child: const Text('Edit the user'),
                         ),
                       ),
+                      const SizedBox(height: 20),
                       SizedBox(
                         width: 200,
                         child: ElevatedButton(
