@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_list/new_user/new_user.dart';
-import 'package:user_list/sorting/view/view.dart';
-import 'package:user_list/user_list/widgets/users_list.dart';
-import 'package:user_list/user_list/bloc/users_bloc.dart';
-import 'package:users_repository/users_repository.dart';
+import 'package:user_list/sorting/sorting.dart';
+import 'package:user_list/user_list/user_list.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
