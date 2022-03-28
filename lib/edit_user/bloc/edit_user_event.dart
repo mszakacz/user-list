@@ -10,18 +10,27 @@ class EditUserEvent extends Equatable {
 class SaveUser extends EditUserEvent {}
 
 class NameEditing extends EditUserEvent {
-  final String firstname;
   const NameEditing(this.firstname);
+
+  final String firstname;
+
+  @override
+  List<Object> get props => [firstname];
 }
 
 class LastnameEditing extends EditUserEvent {
-  final String lastname;
   const LastnameEditing(this.lastname);
+
+  final String lastname;
+
+  @override
+  List<Object> get props => [lastname];
 }
 
 class SetUserByID extends EditUserEvent {
-  final int id;
   const SetUserByID(this.id);
+
+  final int id;
 
   @override
   List<Object> get props => [id];
