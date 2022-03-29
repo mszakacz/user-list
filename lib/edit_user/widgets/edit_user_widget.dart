@@ -27,7 +27,7 @@ class EditUserWidget extends StatelessWidget {
               ],
             );
 
-          default:
+          case EditUserStatus.loading:
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
@@ -36,6 +36,19 @@ class EditUserWidget extends StatelessWidget {
                 Text('Updating...'),
               ],
             );
+
+          case EditUserStatus.posting:
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+                SizedBox(height: 50),
+                Text('Updating...'),
+              ],
+            );
+
+          default:
+            return Container();
         }
       },
     );
