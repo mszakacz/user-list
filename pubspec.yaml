@@ -1,7 +1,7 @@
 name: user_list
 description: Flutter mobile App which present and edit User-List connected with database.
 
-publish_to: 'none' 
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -11,12 +11,14 @@ dependencies:
   bloc: ^8.0.2
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
+  firebase_core: ^1.13.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   http: ^0.13.4
-  path_provider: ^2.0.8
   intl: ^0.17.0
+  path_provider: ^2.0.8
+  provider: ^6.0.2
   users_api:
     path: packages/users_api
   users_repository:
@@ -27,6 +29,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+  mockingjay: ^0.2.0
   mocktail: ^0.2.0
 
 flutter:
