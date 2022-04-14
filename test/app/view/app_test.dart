@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:user_list/app/app.dart';
 import 'package:user_list/theme/theme.dart';
 import 'package:user_list/user_list/user_list.dart';
@@ -37,7 +35,7 @@ void main() {
 
       final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
       expect(materialApp.theme, equals(UserListTheme.light));
-      expect(materialApp.darkTheme, equals(UserListTheme.dark));
+      // expect(materialApp.darkTheme, equals(UserListTheme.dark));
     });
 
     testWidgets('renders UsersPage', (tester) async {
