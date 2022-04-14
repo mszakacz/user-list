@@ -36,7 +36,8 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       title: 'User List',
       theme: UserListTheme.light,
-      darkTheme: UserListTheme.dark,
+      // TODO: Dark mode does not look good, fix it
+      // darkTheme: UserListTheme.dark,
       home: const UsersPage(),
     );
   }
